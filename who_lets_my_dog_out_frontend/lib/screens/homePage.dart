@@ -1,8 +1,17 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+import '../bottomNavi.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,27 +22,6 @@ class HomePage extends StatelessWidget {
           image: AssetImage('assets/background.jpg'),
         )),
         child: const Center(child: Text("Startseite")),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey.shade600,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
-        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.house),
-            label: "Start",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: "Chats",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
-            label: "Profil",
-          ),
-        ],
       ),
     );
   }
