@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">WhoLetsTheDogOutFrontend</string>
+    <string name="app_name">Freche Früchtchen</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="search_view">Searc View</string>
 </resources>
