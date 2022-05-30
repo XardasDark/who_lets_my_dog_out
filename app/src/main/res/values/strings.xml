@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">WhoLetsTheDogOutFrontend</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Suche</string>
+    <string name="title_favorites">Favoriten</string>
+    <string name="title_messages">Nachrichten</string>
+    <string name="title_profil">Profil</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.fhbielefeld.wholetsthedogoutfrontend.ui.dashboard;
+package com.fhbielefeld.wholetsthedogoutfrontend.ui.favorites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentDashboardBinding;
+import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentFavoritesBinding;
 
-public class DashboardFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentFavoritesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        FavoritesViewModel favoritesViewModel =
+                new ViewModelProvider(this).get(FavoritesViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textFavorites;
+        favoritesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
