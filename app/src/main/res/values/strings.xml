@@ -1,8 +1,18 @@
 <resources>
-    <string name="app_name">WhoLetsTheDogOutFrontend</string>
-    <string name="title_home">Home</string>
+    <string name="app_name">WLTDO</string>
+    <string name="title_home">Startseite</string>
     <string name="title_search">Suche</string>
     <string name="title_favorites">Favoriten</string>
     <string name="title_messages">Nachrichten</string>
     <string name="title_profil">Profil</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Passwort</string>
+    <string name="action_sign_in">Einloggen</string>
+    <string name="action_sign_in_short">Einloggen</string>
+    <string name="action_register">Registrieren</string>
+    <string name="welcome">"Willkommen zurück "</string>
+    <string name="invalid_username">Kein valider Benutzername</string>
+    <string name="invalid_password">Das Passwort muss mindestens 5 Zeichen enthalten</string>
+    <string name="login_failed">"Login fehlgeschlagen"</string>
 </resources>

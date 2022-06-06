@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.ui.home.HomeFragment"
+        android:name="com.fhbielefeld.wholetsthedogoutfrontend.homescreen.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.ui.search.SearchFragment"
+        android:name="com.fhbielefeld.wholetsthedogoutfrontend.searchscreen.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.ui.favorites.FavoritesFragment"
+        android:name="com.fhbielefeld.wholetsthedogoutfrontend.favoritesscreen.FavoritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/navigation_messages"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.ui.messages.MessagesFragment"
+        android:name="com.fhbielefeld.wholetsthedogoutfrontend.messagesscreen.MessagesFragment"
         android:label="@string/title_messages"
         tools:layout="@layout/fragment_messages" />
 
     <fragment
         android:id="@+id/navigation_profil"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.ui.profil.ProfilFragment"
+        android:name="com.fhbielefeld.wholetsthedogoutfrontend.profilscreen.ProfilFragment"
         android:label="@string/title_profil"
         tools:layout="@layout/fragment_profil" />
 </navigation>
