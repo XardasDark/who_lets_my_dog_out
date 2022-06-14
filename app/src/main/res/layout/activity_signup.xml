@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Erstelle ein Account"
+        android:text="@string/register_header"
         android:textColor="#000"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -26,7 +26,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true">
 
@@ -40,18 +40,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColorHint="#808080">
+                android:background="@drawable/rounded_corner_button"
+                android:textColorHint="#FFFFFF">
 
                 <EditText
                     android:id="@+id/et_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#808080"
+                    android:background="@android:color/transparent"
                     android:gravity="center"
-                    android:hint="First Name"
-                    android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
+                    android:hint="@string/register_firstname"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:padding="15dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,18 +68,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#808080">
+                android:textColorHint="#FFFFFF">
 
                 <EditText
                     android:id="@+id/et_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#808080"
+                    android:background="@drawable/rounded_corner_button"
                     android:gravity="center"
-                    android:hint="Last Name"
+                    android:hint="@string/register_surname"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
                     android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,19 +95,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#808080">
+                android:textColorHint="#FFFFFF">
 
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#808080"
+                    android:autofillHints="emailAddress"
+                    android:background="@drawable/rounded_corner_button"
                     android:gravity="center"
-                    android:hint="Email"
+                    android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,19 +122,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#808080">
+                android:textColorHint="#FFFFFF">
 
                 <EditText
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#808080"
+                    android:background="@drawable/rounded_corner_button"
                     android:gravity="center"
-                    android:hint="Password"
+                    android:hint="@string/prompt_password"
+                    android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,19 +149,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#808080">
+                android:textColorHint="#FFFFFF">
 
                 <EditText
                     android:id="@+id/et_repeat_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#808080"
+                    android:background="@drawable/rounded_corner_button"
                     android:gravity="center"
-                    android:hint="Repeat Password"
+                    android:hint="@string/register_passwort_repeat"
+                    android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,19 +170,20 @@
             <Button
                 android:id="@+id/bt_register"
                 style="?android:attr/borderlessButtonStyle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_repeat_password"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
+                android:background="@drawable/rounded_corner_button"
                 android:elevation="2dp"
                 android:onClick="performSignUp"
-                android:text="Account erstellen"
+                android:text="@string/register_submit"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp" />
+                android:textColor="#212121"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_repeat_password"
+                app:layout_constraintWidth_percent="0.7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

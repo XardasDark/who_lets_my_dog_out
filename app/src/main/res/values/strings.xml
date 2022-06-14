@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WLTDO</string>
+    <string name="app_name">WLMDO</string>
     <string name="title_home">Startseite</string>
     <string name="title_search">Suche</string>
     <string name="title_favorites">Favoriten</string>
@@ -12,6 +12,11 @@
     <string name="action_sign_in_short">Einloggen</string>
     <string name="action_register">Registrieren</string>
     <string name="welcome">"Willkommen zurück "</string>
+    <string name="register_header">"Erstelle ein Account"</string>
+    <string name="register_submit">"Account erstellen"</string>
+    <string name="register_firstname">"Vorname"</string>
+    <string name="register_surname">"Nachname"</string>
+    <string name="register_passwort_repeat">"Passwort wiederholen"</string>
     <string name="invalid_username">Kein valider Benutzername</string>
     <string name="invalid_password">Das Passwort muss mindestens 5 Zeichen enthalten</string>
     <string name="login_failed">"Login fehlgeschlagen"</string>

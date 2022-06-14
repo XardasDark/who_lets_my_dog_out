@@ -1,6 +1,7 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.login.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.splashscreen.SplashScreen;
 
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class SignupActivity extends AppCompatActivity {
         com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivitySignupBinding binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // To show back button in actionbar
+        // TODO : Not working yet
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewInitializations();
     }
 
@@ -36,8 +40,7 @@ public class SignupActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         etRepeatPassword = findViewById(R.id.et_repeat_password);
 
-        // To show back button in actionbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     // Checking if the input in form is valid
