@@ -53,7 +53,7 @@ public class SearchFragment extends Fragment {
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<GetUsersModel>> call = apiInterface.getUser("ncagee");
+        Call<List<GetUsersModel>> call = apiInterface.getUser("ncage");
         call.enqueue(new Callback<List<GetUsersModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<GetUsersModel>> call, @NonNull Response<List<GetUsersModel>> response) {
