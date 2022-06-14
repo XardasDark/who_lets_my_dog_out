@@ -1,11 +1,13 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.api;
 
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersByDistanceModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Path;
 
 public interface APIInterface {
@@ -21,10 +23,10 @@ public interface APIInterface {
 
     @FormUrlEncoded
     @POST("/api/users?")
-    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);
+    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/
 
     @GET("/user")
-    Call<Ingredient> getUser(@Path("username") String username);*/
+    Call<List<GetUsersByDistanceModel>> getUserRange(@Header("username") String username, @Header("range") String range);
 
     @GET("/user/{username}")
     Call<List<GetUsersModel>> getUser(@Path("username") String username);

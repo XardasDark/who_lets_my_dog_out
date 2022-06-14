@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
-import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersByDistanceModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentSearchBinding;
 
 import java.util.List;
@@ -24,12 +24,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- *
- */
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
+    private List<GetUsersByDistanceModel> usersList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,8 +36,6 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
 
         final TextView textView = binding.textSearch;
         searchViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -53,10 +49,10 @@ public class SearchFragment extends Fragment {
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<GetUsersModel>> call = apiInterface.getUser("ncage");
-        call.enqueue(new Callback<List<GetUsersModel>>() {
+        Call<List<GetUsersByDistanceModel>> call = apiInterface.getUserRange("ncage","15");
+        call.enqueue(new Callback<List<GetUsersByDistanceModel>>() {
             @Override
-            public void onResponse(@NonNull Call<List<GetUsersModel>> call, @NonNull Response<List<GetUsersModel>> response) {
+            public void onResponse(@NonNull Call<List<GetUsersByDistanceModel>> call, @NonNull Response<List<GetUsersByDistanceModel>> response) {
                 Toast toast = null;
                 if(!response.isSuccessful()){
                     if(response.code() == 400){
@@ -66,13 +62,16 @@ public class SearchFragment extends Fragment {
                     toast.show();
                     return;
                 }
-                List<GetUsersModel> users= response.body();
-                toast = Toast.makeText(view.getContext(), users.get(0).getFirstname(),Toast.LENGTH_LONG);
-                toast.show();
+
+                usersList = response.body();
+                for(GetUsersByDistanceModel user : usersList){
+                    toast = Toast.makeText(view.getContext(), user.getUsername(),Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<GetUsersModel>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<GetUsersByDistanceModel>> call, @NonNull Throwable t) {
                 Log.e("API",t.getMessage());
             }
         });
