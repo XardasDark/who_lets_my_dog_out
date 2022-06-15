@@ -1,5 +1,6 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.login.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.splashscreen.SplashScreen;
@@ -15,30 +16,41 @@ import com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivitySignupBindin
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText etFirstName, etLastName, etEmail, etPassword, etRepeatPassword;
+    EditText etFirstName, etLastName, etUserName, etEmail, etPassword, etRepeatPassword, etBirthday, etPicture;
     final int MIN_PASSWORD_LENGTH = 6;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
 
+
         com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivitySignupBinding binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // To show back button in actionbar
-        // TODO : Not working yet
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /**
+         * Create a custom ActionBar with custom titke and back button
+         */
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(getResources().getString(R.string.register_header));
+            // To show back button in actionbar
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         viewInitializations();
     }
 
     void viewInitializations() {
         etFirstName = findViewById(R.id.et_first_name);
         etLastName = findViewById(R.id.et_last_name);
+        etUserName = findViewById(R.id.et_username);
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         etRepeatPassword = findViewById(R.id.et_repeat_password);
+        etBirthday = findViewById(R.id.et_birthday);
+        etPicture = findViewById(R.id.et_picture);
 
 
     }
@@ -53,6 +65,10 @@ public class SignupActivity extends AppCompatActivity {
             etLastName.setError("Bitte gib deinen Nachnamen an");
             return false;
         }
+        if (etUserName.getText().toString().equals("")) {
+            etUserName.setError("Bitte gib einen Benutzernamen an");
+            return false;
+        }
         if (etEmail.getText().toString().equals("")) {
             etEmail.setError("Bitte gib deine Emailadresse an");
             return false;
@@ -65,6 +81,15 @@ public class SignupActivity extends AppCompatActivity {
             etRepeatPassword.setError("Wiederhole dein Passwort");
             return false;
         }
+        if (etBirthday.getText().toString().equals("")) {
+            etBirthday.setError("Bitte gib deinen Geburstag an");
+            return false;
+        }
+        if (etPicture.getText().toString().equals("")) {
+            etPicture.setError("Hyperlink mit png/jpeg Endung");
+            return false;
+        }
+
 
         // checking the proper email format
         if (!isEmailValid(etEmail.getText().toString())) {
@@ -99,9 +124,12 @@ public class SignupActivity extends AppCompatActivity {
 
             String firstName = etFirstName.getText().toString();
             String lastName = etLastName.getText().toString();
+            String username = etUserName.getText().toString();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
             String repeatPassword = etRepeatPassword.getText().toString();
+            String birthday = etBirthday.getText().toString();
+            String picture = etPicture.getText().toString();
 
             Toast.makeText(this,"Erfolgreich registriert",Toast.LENGTH_SHORT).show();
             // Here you can call you API

@@ -27,6 +27,9 @@ public interface APIInterface {
     @POST("/api/users?")
     Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/
 
+    @POST("/user")
+    Call<GetUsersModel> createUser(@Header("firstname") String firstname, @Header("lastname") String lastname, @Header("username") String username, @Header("password") String password, @Header("birthday") String birthday, @Header("email") String email, @Header("picture") String picture, @Header("dogwalker") Boolean dogwalker, @Header("latitude") Number latitude, @Header("longitude") Number longitude);
+
     @POST("/login")
     Call<LoginUserModel> loginUser(@Header("username") String username, @Header("password") String password);
 

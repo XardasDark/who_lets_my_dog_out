@@ -14,6 +14,12 @@ public class GetUsersModel {
     public String lastname;
     @SerializedName("birthdate")
     @Expose
+    public String username;
+    @SerializedName("username")
+    @Expose
+    public String password;
+    @SerializedName("password")
+    @Expose
     public String birthdate;
     @SerializedName("email")
     @Expose
@@ -26,10 +32,10 @@ public class GetUsersModel {
     public Boolean dogWalker;
     @SerializedName("latitude")
     @Expose
-    public String latitude;
+    public Number latitude;
     @SerializedName("longitude")
     @Expose
-    public String longitude;
+    public Number longitude;
     @SerializedName("dogs")
     @Expose
     public List<DogModel> dogModels = null;
@@ -48,6 +54,14 @@ public class GetUsersModel {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getBirthdate() {
@@ -82,19 +96,19 @@ public class GetUsersModel {
         this.dogWalker = dogWalker;
     }
 
-    public String getLatitude() {
+    public Number getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Number latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Number getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Number longitude) {
         this.longitude = longitude;
     }
 

@@ -2,6 +2,7 @@ package com.fhbielefeld.wholetsthedogoutfrontend.login.ui;
 
 import android.app.Activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -41,6 +42,16 @@ public class LoginActivity extends AppCompatActivity {
 
         com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        /**
+         * Create a custom ActionBar with custom titke and back button
+         */
+        // TODO : Back button not working yet
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(getResources().getString(R.string.app_name_long));
+        }
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
