@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import android.util.Log;
 import android.util.Patterns;
 
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
@@ -34,9 +35,11 @@ public class LoginViewModel extends ViewModel {
         Result<LoggedInUser> result = loginRepository.login(username, password);
 
         if (result instanceof Result.Success) {
+            Log.e("LOGIN", "Login successed");
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
         } else {
+            Log.e("LOGIN", "Login failed");
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
     }

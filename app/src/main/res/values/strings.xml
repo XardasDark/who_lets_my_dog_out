@@ -7,6 +7,7 @@
     <string name="title_profil">Profil</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_username">Benutzername</string>
     <string name="prompt_password">Passwort</string>
     <string name="action_sign_in">Einloggen</string>
     <string name="action_sign_in_short">Einloggen</string>
