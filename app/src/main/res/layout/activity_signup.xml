@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corner_button"
                     android:gravity="center"
-                    android:hint="@string/register_passwort_repeat"
+                    android:hint="@string/register_password_repeat"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:padding="10dp"
@@ -195,7 +195,7 @@
                 android:layout_marginTop="10dp"
                 android:textColorHint="#FFFFFF">
 
-                <EditText
+                <DatePicker
                     android:id="@+id/et_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -203,7 +203,8 @@
                     android:gravity="center"
                     android:hint="@string/register_birthday"
                     android:importantForAutofill="no"
-                    android:inputType="datetime"
+                    android:datePickerMode="spinner"
+                    android:calendarViewShown="false"
                     android:padding="10dp"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#212121"
@@ -237,7 +238,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
-                android:id="@+id/et_dog_walker"
+                android:id="@+id/et_dogWalker"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_picture"
@@ -249,6 +250,45 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/register_dogwalker"
                 android:textColor="#212121"/>
+
+            <Button
+                android:id="@+id/bt_getLocation"
+                style="?android:attr/borderlessButtonStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_dogWalker"
+                app:layout_constraintWidth_percent="0.7"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_corner_button"
+                android:elevation="2dp"
+                android:onClick="getLocation"
+                android:text="@string/register_get_location" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_getLocation"
+                app:layout_constraintWidth_percent="0.7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColorHint="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_button"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#212121"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
@@ -266,7 +306,7 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_dog_walker"
+                app:layout_constraintTop_toBottomOf="@+id/layout_location"
                 app:layout_constraintWidth_percent="0.7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

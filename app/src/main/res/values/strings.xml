@@ -19,10 +19,11 @@
     <string name="register_firstname">"Vorname"</string>
     <string name="register_surname">"Nachname"</string>
     <string name="register_username">"Benutzername"</string>
-    <string name="register_passwort_repeat">"Passwort wiederholen"</string>
+    <string name="register_password_repeat">"Passwort wiederholen"</string>
     <string name="register_birthday">"Geburstag"</string>
     <string name="register_picture">"Profilbild"</string>
     <string name="register_dogwalker">"Gassiegänger?"</string>
+    <string name="register_get_location">"Standort"</string>
     <string name="invalid_username">Kein valider Benutzername</string>
     <string name="invalid_password">Das Passwort muss mindestens 5 Zeichen enthalten</string>
     <string name="login_failed">"Login fehlgeschlagen"</string>
