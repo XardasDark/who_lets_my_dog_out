@@ -1,6 +1,9 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.profilscreen;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,12 @@ public class ProfilFragment extends Fragment {
         final TextView textView = binding.textProfil;
         searchViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+    @Override public void onViewCreated(View view, Bundle savedInstanceState){
+        SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
+        String spUser = sp.getString("username", "");
+        Log.d("WLMDO.SharedPreferences", spUser);
     }
 
     @Override

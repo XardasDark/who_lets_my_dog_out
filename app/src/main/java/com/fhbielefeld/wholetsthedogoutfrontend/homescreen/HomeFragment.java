@@ -1,6 +1,9 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.homescreen;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,12 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+    @Override public void onViewCreated(View view, Bundle savedInstanceState){
+        SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
+        String spUser = sp.getString("username", "");
+        Log.d("WLMDO.SharedPreferences", spUser);
     }
 
     @Override

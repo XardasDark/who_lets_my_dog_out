@@ -15,22 +15,6 @@ import java.util.Locale;
  */
 public class LocationToAddress {
 
-    Addresses addresseses;
-    String locality;
-    String thoroughfare;
-    String thoroughfare_number;
-    String country;
-    String country_code;
-    String zipcode;
-
-
-    public LocationToAddress(Context context, double latitude, double longitude) {
-        //this.mContext = context;
-        getAddress(context, latitude, longitude);
-    }
-
-
-
     /**
      * Gets a context, latitude and longitude and reverse geocoding them to a real address
      * Checks if a address was found and
@@ -39,7 +23,7 @@ public class LocationToAddress {
      * @param longitude
      * @return
      */
-    public Addresses getAddress(Context ctx, double latitude, double longitude) {
+    public static StringBuilder getAddress(Context ctx, double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
         List<String> resultList = new ArrayList<String>();
         try {
@@ -48,12 +32,12 @@ public class LocationToAddress {
             if (addresses.size() > 0) {
                 Address address = addresses.get(0);
 
-                locality = address.getLocality();
-                thoroughfare = address.getThoroughfare();
-                thoroughfare_number = address.getSubThoroughfare();
-                country = address.getCountryName();
-                country_code = address.getCountryCode();
-                zipcode = address.getPostalCode();
+                String locality = address.getLocality();
+                String thoroughfare = address.getThoroughfare();
+                String thoroughfare_number = address.getSubThoroughfare();
+                String country = address.getCountryName();
+                String country_code = address.getCountryCode();
+                String zipcode = address.getPostalCode();
                 Log.e("Foo", "Locality in LocationToAddress: " + locality);
                 //double lat =address.getLatitude();
                 //double lon= address.getLongitude();
@@ -76,14 +60,7 @@ public class LocationToAddress {
         } catch (IOException e) {
             Log.e("WLMDO.GPS.ADDRESS", e.getMessage());
         }
-        return addresseses;
-    }
-
-    public String getLocality(){
-        if(addresseses != null){
-            locality = addresseses.getLocality();
-        }
-        return locality;
+        return result;
     }
 
 }

@@ -6,17 +6,12 @@ package com.fhbielefeld.wholetsthedogoutfrontend.login.data.model;
 @SuppressWarnings("FieldMayBeFinal")
 public class LoggedInUser {
 
-    private String userId;
     private String displayName;
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
+    public LoggedInUser(String displayName) {
         this.displayName = displayName;
     }
     @SuppressWarnings({"UnusedDeclaration"})
-    public String getUserId() {
-        return userId;
-    }
 
     public String getDisplayName() {
         return displayName;

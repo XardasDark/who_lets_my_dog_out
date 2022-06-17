@@ -7,7 +7,9 @@ import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -28,10 +31,13 @@ import android.widget.Toast;
 import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivityLoginBinding;
+import com.fhbielefeld.wholetsthedogoutfrontend.sharedpreferences.UserDataToSP;
+
 @SuppressWarnings("Convert2Lambda")
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    UserDataToSP sharedPref = new UserDataToSP();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         /**
-         * Create a custom ActionBar with custom titke and back button
+         * Create a custom ActionBar with custom title and back button
          */
         // TODO : Back button not working yet
         ActionBar actionBar = getSupportActionBar();
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -83,6 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult == null) {
                     return;
                 }
+                String username = usernameEditText.getText().toString();
+
+                saveToSharedPreferences(username);
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
@@ -112,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+
             }
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
@@ -137,6 +148,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void saveToSharedPreferences(String username) {
+        SharedPreferences sharedPreferences =  getApplicationContext().getSharedPreferences("WLMDO", MODE_PRIVATE);
+
+// Creating an Editor object to edit(write to the file)
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+// Storing the key and its value as the data fetched from edittext
+        myEdit.putString("username", username);
+
+// Once the changes have been made,
+// we need to commit to apply those changes made,
+// otherwise, it will throw an error
+        Log.e("Shared", "Meh");
+        myEdit.commit();
+    }
+
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();

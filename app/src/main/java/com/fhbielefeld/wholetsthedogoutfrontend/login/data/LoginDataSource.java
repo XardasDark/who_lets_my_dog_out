@@ -1,13 +1,20 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.login.data;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
+import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.LoginUserModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.login.data.model.LoggedInUser;
+import com.fhbielefeld.wholetsthedogoutfrontend.login.ui.LoginActivity;
+import com.fhbielefeld.wholetsthedogoutfrontend.sharedpreferences.UserDataToSP;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +37,7 @@ public class LoginDataSource {
 
         Call<LoginUserModel> call = apiInterface.loginUser(username, password);
 
-
+        LoginActivity loginActivity = new LoginActivity();
 
         try {
             // TODO: Implement Auth Token
@@ -54,10 +61,9 @@ public class LoginDataSource {
 
                         LoggedInUser user =
                                 new LoggedInUser(
-                                        java.util.UUID.randomUUID().toString(),
                                         "username");
 
-                        new Result.Success<>(user);
+
                         Log.e("API_LOGIN", "Ende Response");
                         return;
                     }
@@ -81,11 +87,9 @@ public class LoginDataSource {
             return new Result.Error(new IOException("Error logging in", e));
         }
 
-        // TODO: Remove following
+
         LoggedInUser user =
-                new LoggedInUser(
-                        java.util.UUID.randomUUID().toString(),
-                        username);
+                new LoggedInUser(username);
         return new Result.Success<>(user);
 
     }

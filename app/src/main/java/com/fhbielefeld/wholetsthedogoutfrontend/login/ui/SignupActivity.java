@@ -35,13 +35,15 @@ import retrofit2.Retrofit;
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText etFirstName, etLastName, etUserName, etEmail, etPassword, etRepeatPassword, etPicture, etLatitude, etLongitude;
+    double latitude;
+    double longitude;
+
+    EditText etFirstName, etLastName, etUserName, etEmail, etPassword, etRepeatPassword, etPicture;
     CheckBox cbDogWalker;
     DatePicker dpBirthday;
     TextView tvLocation;
     final int MIN_PASSWORD_LENGTH = 6;
     private GpsTracker gpsTracker;
-    private LocationToAddress locationToAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,41 +76,23 @@ public class SignupActivity extends AppCompatActivity {
         dpBirthday = findViewById(R.id.et_birthday);
         etPicture = findViewById(R.id.et_picture);
         cbDogWalker = findViewById(R.id.et_dogWalker);
-        //etLatitude = findViewById(R.id.et_dogWalker);
-        //etLatitude = findViewById(R.id.et_dogWalker);
         tvLocation = findViewById(R.id.tv_location);
     }
 
     public void getLocation(View view) {
         gpsTracker = new GpsTracker(SignupActivity.this);
         if(gpsTracker.canGetLocation()){
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
             Toast.makeText(view.getContext(),String.valueOf(latitude) + " | " + String.valueOf(longitude),Toast.LENGTH_SHORT).show();
             tvLocation.setText(String.valueOf(latitude) + " | " + String.valueOf(longitude));
-            //tvLocation.setText(LocationToAddress.getAddress(view.getContext(), latitude, longitude));
-
-            //LocationToAdress.LocationToAdress(latitude, longitude, view.getContext(), new GeocoderHandler());
-            //tvLatitude.setText(String.valueOf(latitude));
-            //tvLongitude.setText(String.valueOf(longitude));
-            getAddresses(view, latitude, longitude);
+            tvLocation.setText(LocationToAddress.getAddress(view.getContext(), latitude, longitude));
         }else{
             gpsTracker.showSettingsAlert();
         }
 
     }
 
-    public void getAddresses(View view, double latitude, double longitude) {
-        Log.e("Foo", String.valueOf(latitude) + String.valueOf(longitude));
-        locationToAddress = new LocationToAddress(view.getContext(), latitude, longitude);
-        Addresses myAddress = locationToAddress.getAddress(view.getContext(), latitude, longitude);
-        if (myAddress != null){
-            Log.e("Foo", String.valueOf(latitude) + " " + String.valueOf(longitude) + " " + myAddress.getLocality());
-            //tvLocation.setText(myAddress.getCountry());
-        }
-
-
-    }
 
 
     // Checking if the input in form is valid
@@ -182,18 +166,15 @@ public class SignupActivity extends AppCompatActivity {
             String username = etUserName.getText().toString();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
-            //String repeatPassword = etRepeatPassword.getText().toString();
             String birthday = String.valueOf(dpBirthday.getYear()) + "-" + String.valueOf(dpBirthday.getMonth()) + "-" + String.valueOf(dpBirthday.getDayOfMonth());
             String picture = etPicture.getText().toString();
             Boolean dogWalker = cbDogWalker.isChecked();
-            //String latitude = etLatitude.getText().toString();
-            //String longitude = etLongitude.getText().toString();
 
 
             Retrofit retrofit = APIClient.getClient();
 
             APIInterface apiInterface = retrofit.create(APIInterface.class);
-            Call<GetUsersModel> call = apiInterface.createUser(firstName, lastName, username, password, birthday, email, picture, dogWalker, 52.3722, 8.9569);
+            Call<GetUsersModel> call = apiInterface.createUser(firstName, lastName, username, password, birthday, email, picture, dogWalker, latitude, longitude);
 
 
 

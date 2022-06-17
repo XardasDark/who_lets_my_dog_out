@@ -1,5 +1,7 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.searchscreen;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +51,11 @@ public class SearchFragment extends Fragment {
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<GetUsersByDistanceModel>> call = apiInterface.getUserRange("ncage","15");
+        SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
+        String spUser = sp.getString("username", "");
+        Log.d("WLMDO.SharedPreferences", spUser);
+
+        Call<List<GetUsersByDistanceModel>> call = apiInterface.getUserRange(spUser,"1500");
         call.enqueue(new Callback<List<GetUsersByDistanceModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<GetUsersByDistanceModel>> call, @NonNull Response<List<GetUsersByDistanceModel>> response) {
@@ -77,7 +83,6 @@ public class SearchFragment extends Fragment {
         });
 
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

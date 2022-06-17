@@ -1,5 +1,7 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.favoritesscreen;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,7 +50,11 @@ public class FavoritesFragment extends Fragment {
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<GetUsersModel>> call = apiInterface.getUser("ncage");
+        SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
+        String spUser = sp.getString("username", "");
+        Log.d("WLMDO.SharedPreferences", spUser);
+
+        Call<List<GetUsersModel>> call = apiInterface.getUser(spUser);
         call.enqueue(new Callback<List<GetUsersModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<GetUsersModel>> call, @NonNull Response<List<GetUsersModel>> response) {
