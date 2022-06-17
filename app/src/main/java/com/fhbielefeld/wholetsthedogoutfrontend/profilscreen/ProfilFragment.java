@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentProfilBinding;
+import com.fhbielefeld.wholetsthedogoutfrontend.gpsmanager.GpsTracker;
+import com.fhbielefeld.wholetsthedogoutfrontend.gpsmanager.LocationToAddress;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +40,15 @@ public class ProfilFragment extends Fragment {
 
     private FragmentProfilBinding binding;
 
+    ImageView ivProfilPicture;
+    TextView tvForename, tvSurname, tvHeader, tvEmail, tvAddress, tvDogs, tvBirthday;
+    CheckBox cbIsWalker;
+
+    double latitude;
+    double longitude;
+
+    private GpsTracker gpsTracker;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfilViewModel searchViewModel =
@@ -44,9 +56,6 @@ public class ProfilFragment extends Fragment {
 
         binding = FragmentProfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textProfil;
-        searchViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
@@ -54,6 +63,8 @@ public class ProfilFragment extends Fragment {
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
         Log.d("WLMDO.SharedPreferences", spUser);
+
+        viewInitializations(view);
 
         Retrofit retrofit = APIClient.getClient();
 
@@ -73,10 +84,28 @@ public class ProfilFragment extends Fragment {
                     toast.show();
                     return;
                 }
-                List<GetUsersModel> users= response.body();
+                List<GetUsersModel> users = response.body();
                 toast = Toast.makeText(view.getContext(), users.get(0).getFirstname(),Toast.LENGTH_LONG);
                 toast.show();
-                new DownloadImageTask((ImageView) view.findViewById(R.id.profil_avatar)).execute(users.get(0).getPicture());
+                new DownloadImageTask((ImageView) view.findViewById(R.id.profilAvatar)).execute(users.get(0).getPicture());
+
+                String firstname = users.get(0).getFirstname();
+                String lastname = users.get(0).getLastname ();
+                String username = spUser;
+                String email = users.get(0).getEmail();
+                String birthday = users.get(0).getBirthdate();
+                Boolean isWalker = users.get(0).getDogWalker();
+                latitude = users.get(0).getLatitude();
+                longitude =  users.get(0).getLongitude();
+
+                getLocation(view);
+
+                tvForename.setText(String.valueOf(firstname));
+                tvSurname.setText(String.valueOf(lastname));
+                tvEmail.setText(String.valueOf(email));
+                tvBirthday.setText(String.valueOf(birthday));
+                cbIsWalker.setChecked(isWalker);
+                tvHeader.setText("Das Profil von " + String.valueOf(username));
             }
 
             @Override
@@ -84,6 +113,28 @@ public class ProfilFragment extends Fragment {
                 Log.e("API",t.getMessage());
             }
         });
+    }
+
+    void viewInitializations(View view) {
+        tvForename = view.findViewById(R.id.profilForename);
+        tvSurname = view.findViewById(R.id.profilSurname);
+        tvHeader = view.findViewById(R.id.profilHeader);
+        tvEmail = view.findViewById(R.id.profilEmailResponse);
+        ivProfilPicture = view.findViewById(R.id.profilAvatar);
+        tvDogs = view.findViewById(R.id.profilDogsResponse);
+        cbIsWalker = view.findViewById(R.id.profilIsDogwalkerResponse);
+        tvAddress = view.findViewById(R.id.profilAddressResponse);
+        tvBirthday = view.findViewById(R.id.profilBirthdayResponse);
+    }
+
+    public void getLocation(View view) {
+        gpsTracker = new GpsTracker(view.getContext());
+        if(gpsTracker.canGetLocation()){
+            tvAddress.setText(LocationToAddress.getAddress(view.getContext(), latitude, longitude));
+        }else{
+            gpsTracker.showSettingsAlert();
+        }
+
     }
 
     @Override

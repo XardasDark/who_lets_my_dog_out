@@ -7,8 +7,6 @@
     android:background="@drawable/app_bg"
     tools:context=".login.ui.SignupActivity">
 
-
-
     <ScrollView
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -46,13 +46,13 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
-        Retrofit retrofit = APIClient.getClient();
-
-        APIInterface apiInterface = retrofit.create(APIInterface.class);
-
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
         Log.d("WLMDO.SharedPreferences", spUser);
+
+        Retrofit retrofit = APIClient.getClient();
+
+        APIInterface apiInterface = retrofit.create(APIInterface.class);
 
         Call<List<GetUsersModel>> call = apiInterface.getUser(spUser);
         call.enqueue(new Callback<List<GetUsersModel>>() {
