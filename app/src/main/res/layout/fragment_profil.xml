@@ -15,59 +15,68 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:text="Dein Profil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-
+    <ImageView
+        android:id="@+id/profil_avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/text_profil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
-        android:id="@+id/profil_username"
-        app:layout_constraintTop_toBottomOf="@+id/text_profil"
+        android:id="@+id/profil_userforsurname"
+        app:layout_constraintTop_toBottomOf="@+id/profil_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="216dp">
+        android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/profil_username_text"
+            android:id="@+id/profil_forename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textAlignment="textStart"
             android:textSize="20sp"
-            android:text="Benutzername"/>
+            android:textColor="@color/orange_700"
+            android:text="Hans"/>
 
         <TextView
-            android:id="@+id/profil_username_response"
+            android:id="@+id/profil_surname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textAlignment="center"
             android:textSize="20sp"
-            android:text="Foo2ggggggggggggggggg"/>
+            android:textColor="@color/orange_700"
+            android:text="Wurst"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/profil_email"
-        app:layout_constraintTop_toBottomOf="@+id/profil_username"
+        app:layout_constraintTop_toBottomOf="@+id/profil_userforsurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="216dp">
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/profil_email_text"
@@ -78,6 +87,7 @@
             android:layout_marginEnd="8dp"
             android:textAlignment="textStart"
             android:textSize="20sp"
+            android:fontFamily="700"
             android:text="E-Mail"/>
 
         <TextView
@@ -88,52 +98,114 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="18sp"
+            android:textColor="@color/orange_500"
             android:text="hanswurst@hotmail.com"/>
     </LinearLayout>
 
-
-
-
-
-
-    <TextView
+    <LinearLayout
         android:id="@+id/profil_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/profil_email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/profil_dogs"
-        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/profil_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:fontFamily="700"
+            android:text="Dein Ort"/>
+
+        <TextView
+            android:id="@+id/profil_address_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/orange_500"
+            android:text="Waldenburger Str. 21, 32469 Petershagen"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profil_dogs"
         app:layout_constraintTop_toBottomOf="@+id/profil_address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <CheckBox
-        android:id="@+id/profil_is_dogwalker"
-        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="@string/register_dogwalker"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/profil_dogs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:fontFamily="700"
+            android:text="Hundenamen"/>
+
+        <TextView
+            android:id="@+id/profil_dogs_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/orange_500"
+            android:text="Emely, Shibi"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profil_is_dogwalker"
         app:layout_constraintTop_toBottomOf="@+id/profil_dogs"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/profil_is_dogwalker_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:fontFamily="700"
+            android:text="Hundenamen"/>
+
+        <CheckBox
+            android:id="@+id/profil_is_dogwalker_response"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
