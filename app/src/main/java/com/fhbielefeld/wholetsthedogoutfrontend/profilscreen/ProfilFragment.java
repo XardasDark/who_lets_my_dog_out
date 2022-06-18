@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
@@ -134,7 +137,13 @@ public class ProfilFragment extends Fragment {
         }else{
             gpsTracker.showSettingsAlert();
         }
+    }
 
+    public void toSettings(FragmentActivity activity, Fragment fragment) {
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add( fragment, null );
+        fragmentTransaction.commit();
     }
 
     @Override

@@ -121,10 +121,6 @@ public class SignupActivity extends AppCompatActivity {
             etRepeatPassword.setError("Wiederhole dein Passwort");
             return false;
         }
-        if (etPicture.getText().toString().equals("")) {
-            etPicture.setError("Hyperlink mit png/jpeg Endung");
-            return false;
-        }
 
 
         // checking the proper email format
@@ -170,6 +166,9 @@ public class SignupActivity extends AppCompatActivity {
             String picture = etPicture.getText().toString();
             Boolean dogWalker = cbDogWalker.isChecked();
 
+            if (picture.equals("") || picture == null) {
+                picture = "https://i.imgur.com/cqKSBdW.jpg";
+            }
 
             Retrofit retrofit = APIClient.getClient();
 
