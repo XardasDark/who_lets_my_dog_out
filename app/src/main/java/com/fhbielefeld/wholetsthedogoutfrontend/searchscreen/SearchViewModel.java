@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModel;
 public class SearchViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
-
     public SearchViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is search fragment");
+        mText.setValue("Suchen");
     }
 
     public LiveData<String> getText() {

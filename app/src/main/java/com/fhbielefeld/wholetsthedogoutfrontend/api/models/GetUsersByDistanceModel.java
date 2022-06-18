@@ -3,7 +3,7 @@ package com.fhbielefeld.wholetsthedogoutfrontend.api.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetUsersByDistanceModel {
+public class GetUsersByDistanceModel implements Comparable<GetUsersByDistanceModel> {
 
     @SerializedName("distance")
     @Expose
@@ -39,4 +39,10 @@ public class GetUsersByDistanceModel {
         this.username = username;
     }
 
+    @Override
+    public int compareTo(GetUsersByDistanceModel getUsersByDistanceModel) {
+        if(distance == getUsersByDistanceModel.distance) return 0;
+        if(distance > getUsersByDistanceModel.distance) return 1;
+        return -1;
+    }
 }
