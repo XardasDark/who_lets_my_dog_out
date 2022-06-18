@@ -216,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:clickable="false" />
+            android:clickable="true" />
     </RelativeLayout>
 
     <LinearLayout
@@ -229,7 +229,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="updateUserData">
 
         <ImageView
             android:id="@+id/profil_edit_image"
