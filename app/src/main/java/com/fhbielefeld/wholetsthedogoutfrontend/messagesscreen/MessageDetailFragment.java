@@ -91,7 +91,7 @@ public class MessageDetailFragment extends Fragment {
 
         ArrayList<String> message = new ArrayList<>(); ArrayList<String>date = new ArrayList<>(); ArrayList<Boolean>own = new ArrayList<>();
         RecyclerView recyclerView= view.findViewById(R.id.messages_ListMessages);
-        MessageDetailRecylerAdapter myAdapter = new MessageDetailRecylerAdapter(view.getContext(),message,own,MainActivity.targetUser);
+        MessageDetailRecylerAdapter myAdapter = new MessageDetailRecylerAdapter(view.getContext(),message,own,MainActivity.targetUser,MainActivity.picture);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
@@ -101,7 +101,7 @@ public class MessageDetailFragment extends Fragment {
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<MessagesModel>> call = apiInterface.getMessages(spUser, MainActivity.targetUser);
+        Call<List<MessagesModel>> call = apiInterface.getMessages( MainActivity.targetUser,spUser);
         call.enqueue(new Callback<List<MessagesModel>>(){
 
             @Override
@@ -114,22 +114,11 @@ public class MessageDetailFragment extends Fragment {
                     message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
                     Log.e("Chat", chat.getMessage() + chat.getDate());
                     //tvMessages = view.findViewById(R.id.messages_Recyclerview);
-                    if (tvMessages != null){
-                        Log.e("Chat", "Ging");
-                        tvMessages.setText(String.valueOf("firstname"));
-                    }
                     myAdapter.notifyDataSetChanged();
 
                     //someText.setText("Hi! I updated you manually!");
                     //tvMessages.setText(chat.getMessage());
                 }
-               //RecyclerView recyclerView = view.findViewById(R.id.messages_Recyclerview);
-                //MessagesRecyclerAdapter myAdapter = new MessagesRecyclerAdapter(view.getContext(),username,message,images,date);
-                //recyclerView.setAdapter(myAdapter);
-                ///recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-                //nach dem füllen der liste
-                //myAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -148,12 +137,12 @@ public class MessageDetailFragment extends Fragment {
                     Toast toast = Toast.makeText(view.getContext(),"Nachricht darf nicht leer sein!",Toast.LENGTH_LONG);
                     toast.show();
                 } else {
-                    String message = tvMessages.getText().toString();
+                    String messag = tvMessages.getText().toString();
 
                     Retrofit retrofit = APIClient.getClient();
 
                     APIInterface apiInterface = retrofit.create(APIInterface.class);
-                    Call<SendMessageModel> call = apiInterface.sendMessage(spUser, MainActivity.targetUser, message);
+                    Call<SendMessageModel> call = apiInterface.sendMessage(spUser, MainActivity.targetUser, messag);
 
                     call.enqueue(new Callback<SendMessageModel>() {
                         @Override
@@ -166,14 +155,50 @@ public class MessageDetailFragment extends Fragment {
                                 }
                                 return;
                             }
-                            Toast toast = Toast.makeText(view.getContext(),"Nachricht erfolgreich versendet!",Toast.LENGTH_LONG);
-                            toast.show();
+                            tvMessages.setText("");
+                            message.add(messag);own.add(true);
+                            myAdapter.notifyDataSetChanged();
+
                         }
 
                         @Override
                         public void onFailure(Call<SendMessageModel> call, Throwable t) {
 
                         }
+                    });
+
+                    Call<List<MessagesModel>> call2 = apiInterface.getMessages( MainActivity.targetUser,spUser);
+                    call2.enqueue(new Callback<List<MessagesModel>>(){
+
+                        @Override
+                        public void onResponse(Call<List<MessagesModel>> call, Response<List<MessagesModel>> response) {
+
+                            message.clear();date.clear();own.clear();
+
+                            messagesList = response.body();
+                            for(MessagesModel chat : messagesList){
+                                message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
+                                Log.e("Chat", chat.getMessage() + chat.getDate());
+                                //tvMessages = view.findViewById(R.id.messages_Recyclerview);
+                                myAdapter.notifyDataSetChanged();
+
+                                //someText.setText("Hi! I updated you manually!");
+                                //tvMessages.setText(chat.getMessage());
+                            }
+                            //RecyclerView recyclerView = view.findViewById(R.id.messages_Recyclerview);
+                            //MessagesRecyclerAdapter myAdapter = new MessagesRecyclerAdapter(view.getContext(),username,message,images,date);
+                            //recyclerView.setAdapter(myAdapter);
+                            ///recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+                            //nach dem füllen der liste
+                            //myAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<MessagesModel>> call, Throwable t) {
+
+                        }
+
                     });
                 }
             }
