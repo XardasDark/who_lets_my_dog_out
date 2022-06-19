@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentFragment = "";
     public static MainActivity main;
     public static String targetUser = "";
+    public static String picture = "https://i.imgur.com/cqKSBdW.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

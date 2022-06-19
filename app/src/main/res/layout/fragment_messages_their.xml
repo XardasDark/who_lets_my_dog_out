@@ -7,13 +7,13 @@
     android:paddingRight="60dp"
     android:clipToPadding="false">
 
-    <View
+    <ImageView
         android:id="@+id/avatar"
-        android:layout_alignParentLeft="true"
-        android:scaleType="centerInside"
-        android:background="@drawable/messages_circle"
         android:layout_width="34dp"
-        android:layout_height="34dp" />
+        android:layout_height="34dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/messages_circle"
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/name_message"

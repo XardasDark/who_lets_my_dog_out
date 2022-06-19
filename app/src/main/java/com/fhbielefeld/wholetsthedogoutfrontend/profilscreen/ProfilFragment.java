@@ -338,7 +338,7 @@ public class ProfilFragment extends Fragment {
             finally {
                 try {
                     in.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
