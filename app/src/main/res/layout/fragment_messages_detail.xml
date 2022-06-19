@@ -8,35 +8,13 @@
     android:clipToPadding="false"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity"
+    android:background="@color/grey_200"
+    android:fitsSystemWindows="true"
     tools:ignore="MergeRootFrame">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/detail_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:id="@+id/messages_view"
+        android:id="@+id/messages_ListMessages"
         android:layout_weight="2"
         android:divider="#fff"
         android:layout_height="wrap_content"
@@ -45,6 +23,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusedByDefault="true"
+        android:layout_marginBottom="60dp"
         android:background="#fff"
         android:orientation="horizontal">
 
@@ -57,6 +37,7 @@
             android:hint="Schreibe eine Nachricht"
             android:inputType="text"
             android:paddingHorizontal="10dp"
+            android:focusedByDefault="true"
             android:text="" />
 
         <ImageButton

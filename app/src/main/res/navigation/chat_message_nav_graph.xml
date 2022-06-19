@@ -19,9 +19,5 @@
         android:name="com.fhbielefeld.wholetsthedogoutfrontend.messagesscreen.MessageDetailFragment"
         android:label="MessagesDetailFragment"
         tools:layout="@layout/fragment_messages_detail">
-        <argument
-            android:name="item_id"
-            android:defaultValue=""
-            app:argType="string" />
     </fragment>
 </navigation>
