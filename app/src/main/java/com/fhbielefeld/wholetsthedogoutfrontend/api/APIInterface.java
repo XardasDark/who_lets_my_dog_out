@@ -5,6 +5,7 @@ import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersByDistanceMod
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.LoginUserModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.MessagesModel;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.SendMessageModel;
 
 import java.util.List;
 
@@ -29,6 +30,10 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("/api/users?")
     Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/
+
+
+    @POST("/chat")
+    Call<SendMessageModel> sendMessage(@Header("username") String username, @Header("usernameTarget") String usernameTarget, @Header("message") String message);
 
     @GET("/chat/{username}")
     Call<List<MessagesModel>> getMessages(@Path("username") String username, @Header("currentUser") String currentUser);

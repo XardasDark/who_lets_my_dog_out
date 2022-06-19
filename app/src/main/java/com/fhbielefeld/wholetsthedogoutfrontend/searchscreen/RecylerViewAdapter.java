@@ -17,8 +17,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.profilscreen.ProfilFragment;
 
@@ -54,6 +56,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
             @Override
             public void onClick(View view) {
                 Log.e("Name",name);
+                Navigation.findNavController(view).navigate(R.id.show_search_detail);
             }
         });
     }

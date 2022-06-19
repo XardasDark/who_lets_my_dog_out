@@ -1,7 +1,6 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.messagesscreen;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,7 @@ public class MessageDetailRecylerAdapter extends RecyclerView.Adapter<MessageDet
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.message_1message);
+            text = itemView.findViewById(R.id.message_my);
             bodymessage = itemView.findViewById(R.id.message_body);
             name = itemView.findViewById(R.id.name_message);
 

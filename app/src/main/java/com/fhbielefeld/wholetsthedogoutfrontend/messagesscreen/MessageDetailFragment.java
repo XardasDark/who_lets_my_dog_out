@@ -1,15 +1,14 @@
 package com.fhbielefeld.wholetsthedogoutfrontend.messagesscreen;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,13 +20,9 @@ import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
-import com.fhbielefeld.wholetsthedogoutfrontend.api.models.AllChatsModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.MessagesModel;
-import com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivitySignupBinding;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.SendMessageModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentMessagesDetailBinding;
-import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentProfilBinding;
-import com.fhbielefeld.wholetsthedogoutfrontend.profilscreen.ProfilViewModel;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,34 +40,15 @@ import retrofit2.Retrofit;
  */
 public class MessageDetailFragment extends Fragment {
 
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
-
-    /**
-     * The placeholder content this fragment is presenting.
-     */
-    private PlaceholderContent.PlaceholderItem mItem;
-    private CollapsingToolbarLayout mToolbarLayout;
-    private TextView mTextView;
-
     TextView tvMessages, tvDate;
 
-    String message = "Leer";
-    String date = "Leer";
+    String message = "";
+    String spUser = "";
+    String targetUser= "";
+
 
     private List<MessagesModel> messagesList;
 
-    private final View.OnDragListener dragListener = (v, event) -> {
-        if (event.getAction() == DragEvent.ACTION_DROP) {
-            ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
-            mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
-            updateContent();
-        }
-        return true;
-    };
     private FragmentMessagesDetailBinding binding;
 
     /**
@@ -89,41 +65,28 @@ public class MessageDetailFragment extends Fragment {
     }
 
     void viewInitializations(View view) {
-        tvMessages = view.findViewById(R.id.message_1message);
+        tvMessages = view.findViewById(R.id.message_my);
         tvDate = view.findViewById(R.id.et_last_name);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MessagesViewModel searchViewModel =
+        MessagesViewModel messagesViewModel =
                 new ViewModelProvider(this).get(MessagesViewModel.class);
 
         binding = FragmentMessagesDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }
-/*    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        binding = FragmentMessagesDetailBinding.inflate(inflater, container, false);
-        View rootView = binding.getRoot();
-        Log.e("Chat", "onCreateView");
-        mToolbarLayout = rootView.findViewById(R.id.chat_detail_fragment);
-        mTextView = binding.editText;
-
-        // Show the placeholder content as text in a TextView & in the toolbar if available.
-        updateContent();
-        rootView.setOnDragListener(dragListener);
-        return rootView;
-    }*/
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState){
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
-        String spUser = sp.getString("username", "");
+        spUser = sp.getString("username", "");
         Log.d("WLMDO.SharedPreferences", spUser);
         String test = "kspacey";
         Log.e("Chat", "onViewCreated");
+
         viewInitializations(view);
 
         ArrayList<String> message = new ArrayList<>(); ArrayList<String>date = new ArrayList<>(); ArrayList<Boolean>own = new ArrayList<>();
@@ -132,11 +95,7 @@ public class MessageDetailFragment extends Fragment {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
-        tvMessages = view.findViewById(R.id.message_1message);
-
-
-
+        tvMessages = view.findViewById(R.id.message_my);
 
         Retrofit retrofit = APIClient.getClient();
 
@@ -180,9 +139,42 @@ public class MessageDetailFragment extends Fragment {
 
         });
 
+    }
 
+    public void sendMessage (View view) {
 
+        if (tvMessages.getText().toString().equals("") || tvMessages.getText().toString() == null) {
+            Toast toast = Toast.makeText(view.getContext(),"Nachricht darf nicht leer sein!",Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            message = tvMessages.getText().toString();
 
+            Retrofit retrofit = APIClient.getClient();
+
+            APIInterface apiInterface = retrofit.create(APIInterface.class);
+            Call<SendMessageModel> call = apiInterface.sendMessage(spUser, targetUser, message);
+
+            call.enqueue(new Callback<SendMessageModel>() {
+                @Override
+                public void onResponse(Call<SendMessageModel> call, Response<SendMessageModel> response) {
+                    if(!response.isSuccessful()){
+                        if(response.code() == 400){
+                            Log.e("API",response.message());
+                            Toast toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                        return;
+                    }
+                    Toast toast = Toast.makeText(view.getContext(),"Nachricht erfolgreich versendet!",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
+                @Override
+                public void onFailure(Call<SendMessageModel> call, Throwable t) {
+
+                }
+            });
+        }
     }
 
     @Override
