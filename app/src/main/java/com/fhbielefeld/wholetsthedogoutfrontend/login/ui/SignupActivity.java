@@ -175,8 +175,6 @@ public class SignupActivity extends AppCompatActivity {
             APIInterface apiInterface = retrofit.create(APIInterface.class);
             Call<GetUsersModel> call = apiInterface.createUser(firstName, lastName, username, password, birthday, email, picture, dogWalker, latitude, longitude);
 
-
-
                 call.enqueue(new Callback<GetUsersModel>() {
                     @Override
                     public void onResponse(@NonNull Call<GetUsersModel> call, @NonNull Response<GetUsersModel> response) {
