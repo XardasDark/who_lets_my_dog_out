@@ -18,11 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.SendMessageModel;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecyclerAdapter.MyViewHolder> {
 
@@ -94,6 +103,8 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
 
         }
     }
+
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
