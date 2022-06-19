@@ -25,12 +25,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="center_horizontal">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/searchUserMessageIcon"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:contentDescription="@string/content_description"
-                    android:src="@drawable/messages_user_button" />
+                    android:src="@drawable/messages_user_button"
+                    android:onClick="sendToUserChat"/>
 
                 <ImageView
                 android:id="@+id/searchUserAvatar"

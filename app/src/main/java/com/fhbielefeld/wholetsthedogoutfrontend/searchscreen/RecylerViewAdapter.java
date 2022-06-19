@@ -56,6 +56,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
             @Override
             public void onClick(View view) {
                 Log.e("Name",name);
+                MainActivity.targetUser = name;
                 Navigation.findNavController(view).navigate(R.id.show_search_detail);
             }
         });

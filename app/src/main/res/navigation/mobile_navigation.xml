@@ -52,4 +52,7 @@
         android:name="com.fhbielefeld.wholetsthedogoutfrontend.searchscreen.SearchUserFragment"
         android:label="Benutzerprofil"
         tools:layout="@layout/fragment_search_user_profil_layout"/>
+    <action
+        android:id="@+id/show_user_messages"
+        app:destination="@id/chat_detail_fragment" />
 </navigation>
