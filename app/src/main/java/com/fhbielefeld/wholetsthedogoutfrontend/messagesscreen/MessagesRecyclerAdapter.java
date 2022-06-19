@@ -65,8 +65,9 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
 
 
         //todo: Bilder richtig laden
-        new DownloadImageTask(holder.image).execute("https://i.imgur.com/cqKSBdW.jpg");
+        new DownloadImageTask(holder.image).execute(userAvatar.get(position));
         String user = usernameData.get(position);
+        String avatar = userAvatar.get(position);
 
         holder.layout.setOnClickListener(new View.OnClickListener(){
 
@@ -75,6 +76,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
                 Log.e("Username",user);
                 // TODO: Fragmentwechsel here NOW
                 MainActivity.targetUser = user;
+                MainActivity.picture = avatar;
                 Navigation.findNavController(v).navigate(R.id.show_chat_detail);
             }
         });

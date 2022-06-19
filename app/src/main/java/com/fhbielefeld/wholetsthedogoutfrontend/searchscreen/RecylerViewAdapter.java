@@ -50,7 +50,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
         holder.name.setText(names.get(position));
         holder.range.setText(range.get(position));
         //todo: Bilder richtig laden
-        new DownloadImageTask(holder.image).execute("https://i.imgur.com/cqKSBdW.jpg");
+        new DownloadImageTask(holder.image).execute(images.get(position));
         String name = names.get(position);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

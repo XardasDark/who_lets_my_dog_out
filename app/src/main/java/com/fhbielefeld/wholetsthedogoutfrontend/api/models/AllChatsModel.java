@@ -15,6 +15,9 @@ public class AllChatsModel {
     @SerializedName("username")
     @Expose
     private String username;
+    @SerializedName("picture")
+    @Expose
+    private String picture;
 
     public String getDateTime() {
         return dateTime;
@@ -38,6 +41,14 @@ public class AllChatsModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
 }

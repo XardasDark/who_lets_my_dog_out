@@ -74,7 +74,7 @@ public class MessagesFragment extends Fragment {
 
                  usersList = response.body();
                  for(AllChatsModel user : usersList){
-                     username.add(user.getUsername()); message.add(user.getMessage()); images.add("Foo"); date.add(user.getDateTime());
+                     username.add(user.getUsername()); message.add(user.getMessage()); images.add(user.getPicture()); date.add(user.getDateTime());
                  }
                  RecyclerView recyclerView = view.findViewById(R.id.messages_Recyclerview);
                  MessagesRecyclerAdapter myAdapter = new MessagesRecyclerAdapter(view.getContext(),username,message,images,date);

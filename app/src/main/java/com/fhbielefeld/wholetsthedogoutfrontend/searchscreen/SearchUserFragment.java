@@ -120,6 +120,7 @@ public class SearchUserFragment extends Fragment {
                 toast.show();
 
                 new DownloadImageTask((ImageView) view.findViewById(R.id.searchUserAvatar)).execute(users.get(0).getPicture());
+                MainActivity.picture=users.get(0).getPicture();
 
                 String firstname = users.get(0).getFirstname();
                 String lastname = users.get(0).getLastname ();
