@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 
 import java.io.IOException;
@@ -64,6 +65,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
             public void onClick(View v) {
                 Log.e("Username",user);
                 // TODO: Fragmentwechsel here NOW
+                MainActivity.targetUser = user;
                 Navigation.findNavController(v).navigate(R.id.show_chat_detail);
             }
         });

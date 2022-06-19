@@ -12,13 +12,14 @@
     android:fitsSystemWindows="true"
     tools:ignore="MergeRootFrame">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/messages_ListMessages"
         android:layout_weight="2"
         android:divider="#fff"
         android:layout_height="wrap_content"
         />
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

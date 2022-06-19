@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = "MainActivity";
     private String currentFragment = "";
     public static MainActivity main;
+    public static String targetUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

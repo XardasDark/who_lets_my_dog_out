@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
@@ -125,30 +126,40 @@ public class MessageDetailFragment extends Fragment {
         Log.e("Chat", "onViewCreated");
         viewInitializations(view);
 
+        ArrayList<String> message = new ArrayList<>(); ArrayList<String>date = new ArrayList<>(); ArrayList<Boolean>own = new ArrayList<>();
+        RecyclerView recyclerView= view.findViewById(R.id.messages_ListMessages);
+        MessageDetailRecylerAdapter myAdapter = new MessageDetailRecylerAdapter(view.getContext(),message,own,MainActivity.targetUser);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+
         tvMessages = view.findViewById(R.id.message_1message);
 
-      ArrayList<String> message = new ArrayList<>(); ArrayList<String>date = new ArrayList<>(); ArrayList<String>own = new ArrayList<>();
+
 
 
         Retrofit retrofit = APIClient.getClient();
 
         APIInterface apiInterface = retrofit.create(APIInterface.class);
 
-        Call<List<MessagesModel>> call = apiInterface.getMessages(spUser, test);
+        Call<List<MessagesModel>> call = apiInterface.getMessages(spUser, MainActivity.targetUser);
         call.enqueue(new Callback<List<MessagesModel>>(){
 
             @Override
             public void onResponse(Call<List<MessagesModel>> call, Response<List<MessagesModel>> response) {
 
+                message.clear();date.clear();own.clear();
+
                 messagesList = response.body();
                 for(MessagesModel chat : messagesList){
-                    message.add(chat.getMessage()); date.add(chat.getDate()); //own.add(chat.getOwn());
+                    message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
                     Log.e("Chat", chat.getMessage() + chat.getDate());
                     //tvMessages = view.findViewById(R.id.messages_Recyclerview);
                     if (tvMessages != null){
                         Log.e("Chat", "Ging");
                         tvMessages.setText(String.valueOf("firstname"));
                     }
+                    myAdapter.notifyDataSetChanged();
 
                     //someText.setText("Hi! I updated you manually!");
                     //tvMessages.setText(chat.getMessage());
