@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,6 @@ public class MessageDetailFragment extends Fragment {
 
     TextView tvMessages, tvDate;
 
-    String message = "";
     String spUser = "";
     String targetUser= "";
 
@@ -95,7 +95,7 @@ public class MessageDetailFragment extends Fragment {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        tvMessages = view.findViewById(R.id.message_my);
+        tvMessages = view.findViewById(R.id.editText);
 
         Retrofit retrofit = APIClient.getClient();
 
@@ -139,42 +139,46 @@ public class MessageDetailFragment extends Fragment {
 
         });
 
-    }
+        ImageButton btn = view.findViewById(R.id.messageButton);
+        btn.setOnClickListener(new View.OnClickListener(){
 
-    public void sendMessage (View view) {
+            @Override
+            public void onClick(View v) {
+                if (tvMessages.getText().toString().equals("") || tvMessages.getText().toString() == null) {
+                    Toast toast = Toast.makeText(view.getContext(),"Nachricht darf nicht leer sein!",Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    String message = tvMessages.getText().toString();
 
-        if (tvMessages.getText().toString().equals("") || tvMessages.getText().toString() == null) {
-            Toast toast = Toast.makeText(view.getContext(),"Nachricht darf nicht leer sein!",Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            message = tvMessages.getText().toString();
+                    Retrofit retrofit = APIClient.getClient();
 
-            Retrofit retrofit = APIClient.getClient();
+                    APIInterface apiInterface = retrofit.create(APIInterface.class);
+                    Call<SendMessageModel> call = apiInterface.sendMessage(spUser, MainActivity.targetUser, message);
 
-            APIInterface apiInterface = retrofit.create(APIInterface.class);
-            Call<SendMessageModel> call = apiInterface.sendMessage(spUser, targetUser, message);
-
-            call.enqueue(new Callback<SendMessageModel>() {
-                @Override
-                public void onResponse(Call<SendMessageModel> call, Response<SendMessageModel> response) {
-                    if(!response.isSuccessful()){
-                        if(response.code() == 400){
-                            Log.e("API",response.message());
-                            Toast toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
+                    call.enqueue(new Callback<SendMessageModel>() {
+                        @Override
+                        public void onResponse(Call<SendMessageModel> call, Response<SendMessageModel> response) {
+                            if(!response.isSuccessful()){
+                                if(response.code() == 400){
+                                    Log.e("API",response.message());
+                                    Toast toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
+                                    toast.show();
+                                }
+                                return;
+                            }
+                            Toast toast = Toast.makeText(view.getContext(),"Nachricht erfolgreich versendet!",Toast.LENGTH_LONG);
                             toast.show();
                         }
-                        return;
-                    }
-                    Toast toast = Toast.makeText(view.getContext(),"Nachricht erfolgreich versendet!",Toast.LENGTH_LONG);
-                    toast.show();
-                }
 
-                @Override
-                public void onFailure(Call<SendMessageModel> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<SendMessageModel> call, Throwable t) {
 
+                        }
+                    });
                 }
-            });
-        }
+            }
+        });
+
     }
 
     @Override
