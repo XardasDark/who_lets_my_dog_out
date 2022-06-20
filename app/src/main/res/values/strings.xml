@@ -28,8 +28,8 @@
     <string name="invalid_password">Das Passwort muss mindestens 5 Zeichen enthalten</string>
     <string name="login_failed">"Login fehlgeschlagen"</string>
     <string name="content_description">Hier sollte ein Bild sein</string>
-    <string name="search_box_username">Benutzername</string>
-    <string name="search_box_range">Reichweite</string>
+    <string name="search_box_username">Benutzername:</string>
+    <string name="search_box_range">Reichweite:</string>
     <string name="profil_email">E-Mail:</string>
     <string name="profil_address">Wohnort:</string>
     <string name="profil_birthday">Geburtsdatum:</string>

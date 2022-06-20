@@ -38,9 +38,6 @@ public class LocationToAddress {
                 String country = address.getCountryName();
                 String country_code = address.getCountryCode();
                 String zipcode = address.getPostalCode();
-                Log.e("Foo", "Locality in LocationToAddress: " + locality);
-                //double lat =address.getLatitude();
-                //double lon= address.getLongitude();
                 result.append(thoroughfare + " " + thoroughfare_number + "\n" + zipcode + " " + locality + "\n" + country + " " + country_code + " ");
                 if (result.toString().trim().length() > 0){
                     resultList.add(locality);

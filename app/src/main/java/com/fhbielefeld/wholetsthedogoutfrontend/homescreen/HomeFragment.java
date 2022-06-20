@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState){
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
-        Log.d("WLMDO.SharedPreferences", spUser);
 
         TextView text = view.findViewById(R.id.text_home);
         text.setText("Willkommen zur ersten version unserer APP WhoLetsMyDogOut");

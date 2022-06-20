@@ -93,8 +93,6 @@ public class SearchUserFragment extends Fragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO", Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
-        Log.d("WLMDO.SharedPreferences", spUser);
-        Log.e("Search", "onViewCreated");
 
         viewInitializations(view);
 
@@ -110,16 +108,13 @@ public class SearchUserFragment extends Fragment {
                 Toast toast = null;
                 if(!response.isSuccessful()){
                     if(response.code() == 400){
-                        Log.e("API",response.message());
+                        Log.e("WLMDO.API",response.message());
                         toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
                     }
                     toast.show();
                     return;
                 }
                 List<GetUsersModel> users = response.body();
-                toast = Toast.makeText(view.getContext(), users.get(0).getFirstname(),Toast.LENGTH_LONG);
-                toast.show();
-
                 new DownloadImageTask((ImageView) view.findViewById(R.id.searchUserAvatar)).execute(users.get(0).getPicture());
                 MainActivity.picture=users.get(0).getPicture();
 
@@ -148,7 +143,7 @@ public class SearchUserFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<GetUsersModel>> call, Throwable t) {
-                Log.e("API",t.getMessage());
+                Log.e("WLMDO.API",t.getMessage());
             }
         });
 

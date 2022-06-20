@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="400dp"
     tools:context=".searchscreen.SearchBoxFragment"
+    android:background="@drawable/app_bg"
     android:id="@+id/search_box_constraint">
 
-    <ImageView
+<!--    <ImageView
         android:id="@+id/search_box_background_grey"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/content_description"
         android:src="@drawable/search_user_background_grey"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_box_avatar_circle"
@@ -66,23 +67,52 @@
             android:tint="@color/white"
             tools:ignore="UseAppTint" />
 
-        <TextView
-            android:id="@+id/search_box_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_box_username"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+        <RelativeLayout
+            android:id="@+id/search_box_use"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/search_box_range"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_box_range"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/search_box_username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/search_box_username"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/search_box_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/search_box_rang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/search_box_range_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_box_range"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/search_box_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
 
     </LinearLayout>
 
