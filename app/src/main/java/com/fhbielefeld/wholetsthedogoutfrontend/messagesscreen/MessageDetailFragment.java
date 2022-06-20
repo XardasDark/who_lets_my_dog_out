@@ -110,6 +110,7 @@ public class MessageDetailFragment extends Fragment {
                 for(MessagesModel chat : messagesList){
                     message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
                     myAdapter.notifyDataSetChanged();
+                    recyclerView.scrollToPosition(messagesList.size() - 1);
                 }
             }
 
@@ -150,6 +151,7 @@ public class MessageDetailFragment extends Fragment {
                             tvMessages.setText("");
                             message.add(messag);own.add(true);
                             myAdapter.notifyDataSetChanged();
+                            recyclerView.scrollToPosition(messagesList.size() - 1);
 
                         }
 
@@ -171,6 +173,7 @@ public class MessageDetailFragment extends Fragment {
                             for(MessagesModel chat : messagesList){
                                 message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
                                 myAdapter.notifyDataSetChanged();
+                                recyclerView.scrollToPosition(messagesList.size() - 1);
                             }
                         }
 

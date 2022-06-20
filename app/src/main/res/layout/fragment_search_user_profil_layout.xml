@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="120dp"
-                    android:clickable="false" />
+                    android:clickable="true" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

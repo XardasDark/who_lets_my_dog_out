@@ -76,7 +76,7 @@ public class SearchUserFragment extends Fragment {
         tvEmail= view.findViewById(R.id.searchEmailResponse);
         tvDogs = view.findViewById(R.id.SearchDogsResponse);
         tvBirthday = view.findViewById(R.id.searchBirthdayResponse);
-        cbIsWalker = view.findViewById(R.id.profilIsDogwalkerResponse);
+        cbIsWalker = view.findViewById(R.id.searchIsDogwalkerResponse);
     }
 
     @Override
