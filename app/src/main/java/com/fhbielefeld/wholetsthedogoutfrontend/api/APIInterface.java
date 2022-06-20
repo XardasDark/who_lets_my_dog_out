@@ -42,7 +42,7 @@ public interface APIInterface {
     Call<List<AllChatsModel>> getAllChats(@Header("username") String username);
 
     @PUT("/user")
-    Call<GetUsersModel> changeUser(@Header("username") String username, @Header("firstname") String firstname, @Header("lastname") String lastname, @Header("birthday") String birthday, @Header("email") String email, @Header("picture") String picture, @Header("dogwalker") Boolean dogwalker, @Header("latitude") Double latitude, @Header("longitude") Double longitude);
+    Call<GetUsersModel> changeUser(@Header("username") String username, @Header("firstname") String firstname, @Header("lastname") String lastname, @Header("birthday") String birthday, @Header("email") String email, @Header("dogwalker") Boolean dogwalker, @Header("latitude") Double latitude, @Header("longitude") Double longitude);
 
     @POST("/user")
     Call<GetUsersModel> createUser(@Header("firstname") String firstname, @Header("lastname") String lastname, @Header("username") String username, @Header("password") String password, @Header("birthday") String birthday, @Header("email") String email, @Header("picture") String picture, @Header("dogwalker") Boolean dogwalker, @Header("latitude") Number latitude, @Header("longitude") Number longitude);

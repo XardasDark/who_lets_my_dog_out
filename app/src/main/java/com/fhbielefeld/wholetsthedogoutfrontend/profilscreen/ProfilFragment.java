@@ -217,7 +217,7 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                picture = "https://aisvip-a.akamaihd.net/themenarchiv/henry-cavill-bilder/460x0/henry-cavill-t2597.jpg";
+                //picture = "https://aisvip-a.akamaihd.net/themenarchiv/henry-cavill-bilder/460x0/henry-cavill-t2597.jpg";
                 // TODO: dogWalker wird nicht beim PUT übernommen
                 dogWalker = cbIsWalker.isChecked();
 
@@ -249,7 +249,7 @@ public class ProfilFragment extends Fragment {
 
                 getAddress(view, address);
 
-                Call<GetUsersModel> call = apiInterface.changeUser(spUser, firstName, lastName, birthday, email, picture, dogWalker, latitude, longitude);
+                Call<GetUsersModel> call = apiInterface.changeUser(spUser, firstName, lastName, birthday, email, dogWalker, latitude, longitude);
                 call.enqueue(new Callback<GetUsersModel>() {
                     @Override
                     public void onResponse(Call<GetUsersModel> call, Response<GetUsersModel> response) {
