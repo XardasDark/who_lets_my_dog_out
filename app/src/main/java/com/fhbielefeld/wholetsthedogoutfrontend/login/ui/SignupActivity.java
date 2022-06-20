@@ -159,7 +159,7 @@ public class SignupActivity extends AppCompatActivity {
             String username = etUserName.getText().toString();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
-            String birthday = String.valueOf(dpBirthday.getYear()) + "-" + String.valueOf(dpBirthday.getMonth()) + "-" + String.valueOf(dpBirthday.getDayOfMonth());
+            String birthday = String.valueOf(dpBirthday.getYear()) + "-" + String.valueOf(dpBirthday.getMonth()+1) + "-" + String.valueOf(dpBirthday.getDayOfMonth());
             String picture = etPicture.getText().toString();
             Boolean dogWalker = cbDogWalker.isChecked();
 
