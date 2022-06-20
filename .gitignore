@@ -14,5 +14,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-/gradle/
-gradle/
+!/gradle
+/gradle/*
+!/gradle/wrapper
+!/gradle/wrapper/*
