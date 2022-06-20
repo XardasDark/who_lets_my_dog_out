@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/messages_Constraint"
+    android:background="@drawable/app_bg"
     tools:context=".messagesscreen.MessagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     tools:context=".searchscreen.SearchFragment">
 
     <TextView
@@ -37,6 +38,6 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingBottom="175dp"
+        android:paddingBottom="155dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

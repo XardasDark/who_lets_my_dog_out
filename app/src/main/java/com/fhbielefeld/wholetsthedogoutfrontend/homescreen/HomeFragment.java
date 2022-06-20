@@ -22,6 +22,10 @@ import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentHomeBinding;
 import com.fhbielefeld.wholetsthedogoutfrontend.profilscreen.ProfilFragment;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
@@ -35,20 +39,26 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+
+
+    public String randomDogPick() {
+        ArrayList<String> dogs = new ArrayList<>(Arrays
+                .asList("https://i.imgur.com/z1pIv6S.jpeg", "https://i.imgur.com/wcbCIc3.jpeg", "https://i.imgur.com/kHhvfum.jpeg", "https://i.imgur.com/E21nDxr.jpeg"));
+        int index = (int)(Math.random() * dogs.size());
+        String currentDog = dogs.get(index);
+
+        return currentDog;
     }
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState){
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
 
-        TextView text = view.findViewById(R.id.text_home);
-        text.setText("Willkommen zur ersten version unserer APP WhoLetsMyDogOut");
-
         ImageView image = view.findViewById(R.id.homescreen_imageView);
-        new DownloadImageTask(image).execute("https://i.imgur.com/z1pIv6S.jpeg");
+        new DownloadImageTask(image).execute(randomDogPick());
     }
 
     @Override

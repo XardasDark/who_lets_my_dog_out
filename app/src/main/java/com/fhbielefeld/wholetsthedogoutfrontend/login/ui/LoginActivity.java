@@ -173,6 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         if (response.isSuccessful()) {
+                            saveToSharedPreferences(usernameEditText.getText().toString());
                             updateUiWithUser(new LoggedInUserView(usernameEditText.getText().toString()));
                             return;
                         }
