@@ -27,6 +27,7 @@ import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.DogModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.MessagesModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentMessagesDetailBinding;
@@ -129,12 +130,20 @@ public class SearchUserFragment extends Fragment {
                 String birthday = users.get(0).getBirthdate();
                 Boolean isWalker = users.get(0).getDogWalker();
 
+                List<DogModel> dogs = users.get(0).getDogs();
+
+                String dogname = "";
+                for (DogModel dog: dogs){
+                    dogname = dogname + dog.getName() + ",";
+                }
+
 
                 tvForename.setText(String.valueOf(firstname));
                 tvSurname.setText(String.valueOf(lastname));
                 tvEmail.setText(String.valueOf(email));
                 tvBirthday.setText(String.valueOf(birthday));
                 cbIsWalker.setChecked(isWalker);
+                tvDogs.setText(dogname);
             }
 
             @Override

@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.DogModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.api.models.GetUsersModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.FragmentProfilBinding;
 import com.fhbielefeld.wholetsthedogoutfrontend.gpsmanager.GpsTracker;
@@ -185,6 +186,13 @@ public class ProfilFragment extends Fragment {
                 latitude = users.get(0).getLatitude();
                 longitude =  users.get(0).getLongitude();
 
+                List<DogModel> dogs = users.get(0).getDogs();
+
+                String dogsname="";
+                for (DogModel dog: dogs){
+                    dogsname = dogsname + dog.getName() + "," ;
+                }
+
                 getLocation(view);
 
                 tvForename.setText(String.valueOf(firstname));
@@ -193,6 +201,7 @@ public class ProfilFragment extends Fragment {
                 tvBirthday.setText(String.valueOf(birthday));
                 cbIsWalker.setChecked(isWalker);
                 tvHeader.setText("Das Profil von " + String.valueOf(username));
+                tvDogs.setText(dogsname);
             }
 
             @Override
