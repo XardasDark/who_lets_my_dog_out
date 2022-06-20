@@ -33,8 +33,10 @@
         android:id="@+id/RecyclerView_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@+id/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="175dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

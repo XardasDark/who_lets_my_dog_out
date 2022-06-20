@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
 
         @SuppressWarnings({"UnusedDeclaration"})
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_search, R.id.navigation_favorites, R.id.navigation_messages, R.id.navigation_profil)
+                R.id.navigation_home, R.id.navigation_search, R.id.navigation_messages, R.id.navigation_profil)
                 .build();
 
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);

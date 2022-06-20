@@ -15,16 +15,10 @@
         android:id="@+id/navigation_search"
         android:name="com.fhbielefeld.wholetsthedogoutfrontend.searchscreen.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_search" />
     <action
         android:id="@+id/show_search_detail"
         app:destination="@id/search_detail_fragment" />
-
-    <fragment
-        android:id="@+id/navigation_favorites"
-        android:name="com.fhbielefeld.wholetsthedogoutfrontend.favoritesscreen.FavoritesFragment"
-        android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/navigation_messages"

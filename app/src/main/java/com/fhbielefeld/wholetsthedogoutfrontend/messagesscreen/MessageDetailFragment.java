@@ -44,7 +44,6 @@ public class MessageDetailFragment extends Fragment {
     TextView tvMessages, tvDate;
 
     String spUser = "";
-    String targetUser= "";
 
 
     private List<MessagesModel> messagesList;
@@ -83,9 +82,7 @@ public class MessageDetailFragment extends Fragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState){
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         spUser = sp.getString("username", "");
-        Log.d("WLMDO.SharedPreferences", spUser);
         String test = "kspacey";
-        Log.e("Chat", "onViewCreated");
 
         viewInitializations(view);
 
@@ -112,12 +109,7 @@ public class MessageDetailFragment extends Fragment {
                 messagesList = response.body();
                 for(MessagesModel chat : messagesList){
                     message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
-                    Log.e("Chat", chat.getMessage() + chat.getDate());
-                    //tvMessages = view.findViewById(R.id.messages_Recyclerview);
                     myAdapter.notifyDataSetChanged();
-
-                    //someText.setText("Hi! I updated you manually!");
-                    //tvMessages.setText(chat.getMessage());
                 }
             }
 
@@ -149,7 +141,7 @@ public class MessageDetailFragment extends Fragment {
                         public void onResponse(Call<SendMessageModel> call, Response<SendMessageModel> response) {
                             if(!response.isSuccessful()){
                                 if(response.code() == 400){
-                                    Log.e("API",response.message());
+                                    Log.e("WLMDO.API",response.message());
                                     Toast toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -178,20 +170,8 @@ public class MessageDetailFragment extends Fragment {
                             messagesList = response.body();
                             for(MessagesModel chat : messagesList){
                                 message.add(chat.getMessage()); date.add(chat.getDate()); own.add(chat.getOwn());
-                                Log.e("Chat", chat.getMessage() + chat.getDate());
-                                //tvMessages = view.findViewById(R.id.messages_Recyclerview);
                                 myAdapter.notifyDataSetChanged();
-
-                                //someText.setText("Hi! I updated you manually!");
-                                //tvMessages.setText(chat.getMessage());
                             }
-                            //RecyclerView recyclerView = view.findViewById(R.id.messages_Recyclerview);
-                            //MessagesRecyclerAdapter myAdapter = new MessagesRecyclerAdapter(view.getContext(),username,message,images,date);
-                            //recyclerView.setAdapter(myAdapter);
-                            ///recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-                            //nach dem füllen der liste
-                            //myAdapter.notifyDataSetChanged();
                         }
 
                         @Override

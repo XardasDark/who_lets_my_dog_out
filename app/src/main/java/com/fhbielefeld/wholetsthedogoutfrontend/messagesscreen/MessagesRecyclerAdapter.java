@@ -72,7 +72,6 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
 
             @Override
             public void onClick(View v) {
-                Log.e("Username",user);
                 MainActivity.targetUser = user;
                 MainActivity.picture = avatar;
                 Navigation.findNavController(v).navigate(R.id.show_chat_detail);

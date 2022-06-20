@@ -161,7 +161,6 @@ public class LoginActivity extends AppCompatActivity {
 // Once the changes have been made,
 // we need to commit to apply those changes made,
 // otherwise, it will throw an error
-        Log.e("Shared", "Meh");
         myEdit.commit();
     }
 

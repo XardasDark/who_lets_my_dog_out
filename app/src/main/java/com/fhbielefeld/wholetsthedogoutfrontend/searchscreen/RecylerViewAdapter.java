@@ -48,13 +48,12 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(names.get(position));
-        holder.range.setText(range.get(position));
+        holder.range.setText(range.get(position)+" km");
         new DownloadImageTask(holder.image).execute(images.get(position));
         String name = names.get(position);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Name",name);
                 MainActivity.targetUser = name;
                 Navigation.findNavController(view).navigate(R.id.show_search_detail);
             }

@@ -84,7 +84,6 @@ public class SignupActivity extends AppCompatActivity {
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
-            Toast.makeText(view.getContext(),String.valueOf(latitude) + " | " + String.valueOf(longitude),Toast.LENGTH_SHORT).show();
             tvLocation.setText(String.valueOf(latitude) + " | " + String.valueOf(longitude));
             tvLocation.setText(LocationToAddress.getAddress(view.getContext(), latitude, longitude));
         }else{

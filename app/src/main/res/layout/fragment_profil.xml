@@ -215,8 +215,7 @@
             android:id="@+id/profilIsDogwalkerResponse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:clickable="true" />
+            android:layout_marginStart="120dp"/>
     </RelativeLayout>
 
     <LinearLayout

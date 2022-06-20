@@ -73,7 +73,6 @@ public class GpsTracker extends Service implements LocationListener {
             isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                // TODO: Here could be a error handler being implemented
                 // no network provider is enabled
             } else {
                 this.canGetLocation = true;
@@ -152,7 +151,6 @@ public class GpsTracker extends Service implements LocationListener {
 
             ex.printStackTrace();
         }
-
         return p1;
     }
 
@@ -201,7 +199,7 @@ public class GpsTracker extends Service implements LocationListener {
     public void showSettingsAlert(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
-        alertDialog.setTitle("Standort Knight abrufbar");
+        alertDialog.setTitle("Standort nicht abrufbar");
 
         alertDialog.setMessage("GPS ist nicht aktiviert. Bitte aktiviere GPS in deinen Smartphone Einstellungen!");
 

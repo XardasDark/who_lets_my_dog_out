@@ -62,7 +62,6 @@ public class SearchFragment extends Fragment {
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
         String spUser = sp.getString("username", "");
-        Log.d("WLMDO.SharedPreferences", spUser);
 
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerView_search);
         ArrayList<String> images = new ArrayList<>(), names = new ArrayList<>(), range = new ArrayList<>();
@@ -85,7 +84,7 @@ public class SearchFragment extends Fragment {
                         Toast toast = null;
                         if(!response.isSuccessful()){
                             if(response.code() == 400){
-                                Log.e("API",response.message());
+                                Log.e("WLMDO.API",response.message());
                                 toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
                             }
                             toast.show();
@@ -103,7 +102,7 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public void onFailure(@NonNull Call<List<GetUsersByDistanceModel>> call, @NonNull Throwable t) {
-                        Log.e("API",t.getMessage());
+                        Log.e("WLMDO.API",t.getMessage());
                     }
                 });
             }

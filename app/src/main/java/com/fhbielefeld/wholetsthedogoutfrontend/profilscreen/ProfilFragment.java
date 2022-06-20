@@ -166,15 +166,13 @@ public class ProfilFragment extends Fragment {
                 Toast toast = null;
                 if(!response.isSuccessful()){
                     if(response.code() == 400){
-                        Log.e("API",response.message());
+                        Log.e("WLMDO.API",response.message());
                         toast = Toast.makeText(view.getContext(),"Code "+response.code(),Toast.LENGTH_LONG);
                     }
                     toast.show();
                     return;
                 }
                 List<GetUsersModel> users = response.body();
-                toast = Toast.makeText(view.getContext(), users.get(0).getFirstname(),Toast.LENGTH_LONG);
-                toast.show();
                 new DownloadImageTask((ImageView) view.findViewById(R.id.profilAvatar)).execute(users.get(0).getPicture());
 
                 String firstname = users.get(0).getFirstname();
@@ -206,7 +204,7 @@ public class ProfilFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<GetUsersModel>> call, @NonNull Throwable t) {
-                Log.e("API",t.getMessage());
+                Log.e("WLMDO.API",t.getMessage());
             }
         });
 
@@ -305,8 +303,6 @@ public class ProfilFragment extends Fragment {
         }else {
             Log.e("Address", "No Match");
         }
-
-        Log.e("Address", foo);
     }
 
     public void toSettings(FragmentActivity activity, Fragment fragment) {
@@ -324,8 +320,6 @@ public class ProfilFragment extends Fragment {
 
 
     //Load image
-    // TODO: Error Handling - Bild kann nicht geladen werden / Leer / What ever
-    // TODO: Bild tmp Speichern
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

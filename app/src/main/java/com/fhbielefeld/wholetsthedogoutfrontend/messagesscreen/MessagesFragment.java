@@ -57,7 +57,6 @@ public class MessagesFragment extends Fragment {
      @Override public void onViewCreated(View view, Bundle savedInstanceState){
          SharedPreferences sp = this.getActivity().getSharedPreferences("WLMDO" , Context.MODE_PRIVATE);
          String spUser = sp.getString("username", "");
-         Log.d("WLMDO.SharedPreferences", spUser);
 
          ArrayList<String>images = new ArrayList<>(); ArrayList<String>username = new ArrayList<>(); ArrayList<String> message = new ArrayList<>(); ArrayList<String>date = new ArrayList<>();
 

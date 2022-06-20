@@ -12,11 +12,6 @@
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_favorites"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/title_favorites" />
-
-    <item
         android:id="@+id/navigation_messages"
         android:icon="@drawable/ic_baseline_message_24"
         android:title="@string/title_messages" />

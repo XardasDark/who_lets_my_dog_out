@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         @SuppressWarnings({"UnusedDeclaration"})
         AppBarConfiguration appBarConfiguration2 = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_search, R.id.navigation_favorites, R.id.navigation_messages, R.id.navigation_profil)
+                R.id.navigation_home, R.id.navigation_search, R.id.navigation_messages, R.id.navigation_profil)
                 .build();
         assert navHostFragment != null;
         NavigationUI.setupWithNavController(navView, navController);
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
      * @param frameId       layoutFrame to place Fragment on
      */
     public void placeFragment(Class fragmentClass, int frameId) {
-        Log.e(LOG_TAG, "--placeFragment--");
         currentFragment = fragmentClass.getName();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -88,12 +87,9 @@ public class MainActivity extends AppCompatActivity {
             for (Fragment f : fragments) {
                 if (f != null && !f.isDetached()) {
                     fragmentTransaction.detach(f);
-                    Log.e(LOG_TAG, f.getClass().getSimpleName() + " detatched");
                     if (f instanceof OnManualDetachListener) {
-                        Log.e(LOG_TAG, "Calling onManualDetach");
                         ((OnManualDetachListener) f).onManualDetach();
                     }
-                    Log.e(LOG_TAG, f.getClass().getSimpleName() + " detatched");
                 }
 
             }
@@ -102,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         // add/attach fragments
         if (fragmentManager.findFragmentByTag(simpleName) != null) {
             fragmentTransaction.attach(fragmentManager.findFragmentByTag(simpleName));
-            Log.e(LOG_TAG, simpleName + " attached");
         } else {
             Fragment fragment = null;
             try {
@@ -111,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(LOG_TAG, "Exception creating Fragment instance\n" + e.getMessage());
             }
             fragmentTransaction.add(frameId, fragment, simpleName);
-            Log.e(LOG_TAG, simpleName + " added");
         }
         fragmentTransaction.addToBackStack(simpleName);
         fragmentTransaction.commit();
