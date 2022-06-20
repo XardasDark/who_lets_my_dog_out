@@ -320,8 +320,6 @@ public class ProfilFragment extends Fragment {
 
 
     //Load image
-    // TODO: Error Handling - Bild kann nicht geladen werden / Leer / What ever
-    // TODO: Bild tmp Speichern
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
