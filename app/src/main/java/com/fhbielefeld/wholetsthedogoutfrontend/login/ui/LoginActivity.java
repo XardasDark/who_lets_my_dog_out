@@ -30,8 +30,20 @@ import android.widget.Toast;
 
 import com.fhbielefeld.wholetsthedogoutfrontend.MainActivity;
 import com.fhbielefeld.wholetsthedogoutfrontend.R;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.APIClient;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.APIInterface;
+import com.fhbielefeld.wholetsthedogoutfrontend.api.models.LoginUserModel;
 import com.fhbielefeld.wholetsthedogoutfrontend.databinding.ActivityLoginBinding;
+import com.fhbielefeld.wholetsthedogoutfrontend.login.data.Result;
+import com.fhbielefeld.wholetsthedogoutfrontend.login.data.model.LoggedInUser;
 import com.fhbielefeld.wholetsthedogoutfrontend.sharedpreferences.UserDataToSP;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 @SuppressWarnings("Convert2Lambda")
 public class LoginActivity extends AppCompatActivity {
@@ -143,8 +155,39 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+
+                Retrofit retrofit = APIClient.getClient();
+                APIInterface apiInterface = retrofit.create(APIInterface.class);
+                Call<LoginUserModel> call = apiInterface.loginUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
+
+                call.enqueue(new Callback<LoginUserModel>() {
+                    @Override
+                    public void onResponse(Call<LoginUserModel> call, Response<LoginUserModel> response) {
+                        if (!response.isSuccessful()) {
+                            if (response.code() == 400) {
+                                loadingProgressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getApplicationContext(), "Falscher Nutzername oder Passwort", Toast.LENGTH_LONG).show();
+                                new Result.Error(new IOException("Error logging in"));
+                            }
+                            return;
+                        }
+
+                        if (response.isSuccessful()) {
+                            updateUiWithUser(new LoggedInUserView(usernameEditText.getText().toString()));
+                            return;
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginUserModel> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Fehler in der API", Toast.LENGTH_LONG).show();
+                        loadingProgressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+                /*loginViewModel.login(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());*/
             }
         });
     }
