@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.fhbielefeld.wholetsthedogoutfrontend.login.ui.LoginActivity;
 
 public class UserDataToSP {
 
-    public void saveToSharedPreferences(String username, Context context) {
+    public void saveToSharedPreferences(String username, @NonNull Context context) {
         SharedPreferences sharedPreferences =  context.getSharedPreferences("WLMDO", context.MODE_PRIVATE);
 
 // Creating an Editor object to edit(write to the file)
@@ -23,7 +25,7 @@ public class UserDataToSP {
         myEdit.commit();
     }
 
-    public void getSharedPreferences(Context context) {
+    public void getSharedPreferences(@NonNull Context context) {
 
 // Retrieving the value using its keys the file name
 // must be same in both saving and retrieving the data

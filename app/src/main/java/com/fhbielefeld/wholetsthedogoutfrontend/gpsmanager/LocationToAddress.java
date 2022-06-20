@@ -5,6 +5,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +19,13 @@ public class LocationToAddress {
 
     /**
      * Gets a context, latitude and longitude and reverse geocoding them to a real address
-     * Checks if a address was found and
+     * Checks if a address was found and concatenate the address fragments to a big String
      * @param ctx
      * @param latitude
      * @param longitude
      * @return
      */
+    @NonNull
     public static StringBuilder getAddress(Context ctx, double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
         List<String> resultList = new ArrayList<String>();

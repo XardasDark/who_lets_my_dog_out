@@ -17,21 +17,6 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface APIInterface {
-
-/*    @GET("/api/unknown")
-    Call<MultipleResource> doGetListResources();
-
-    @POST("/api/users")
-    Call<User> createUser(@Body User user);
-
-    @GET("/api/users?")
-    Call<UserList> doGetUserList(@Query("page") String page);
-
-    @FormUrlEncoded
-    @POST("/api/users?")
-    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/
-
-
     @POST("/chat")
     Call<SendMessageModel> sendMessage(@Header("username") String username, @Header("usernameTarget") String usernameTarget, @Header("message") String message);
 

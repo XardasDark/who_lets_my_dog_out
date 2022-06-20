@@ -138,7 +138,6 @@ public class GpsTracker extends Service implements LocationListener {
         LatLng p1 = null;
 
         try {
-            // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;

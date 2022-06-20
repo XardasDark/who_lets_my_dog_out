@@ -120,7 +120,11 @@ public class SignupActivity extends AppCompatActivity {
             etRepeatPassword.setError("Wiederhole dein Passwort");
             return false;
         }
-
+        if (tvLocation.getText().toString().equals("")) {
+            Toast toast = Toast.makeText(this,"Bitte drücke auf den Standort Button!",Toast.LENGTH_LONG);
+            toast.show();
+            return false;
+        }
 
         // checking the proper email format
         if (!isEmailValid(etEmail.getText().toString())) {
@@ -147,15 +151,9 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     // Hook Click Event
-
     public void performSignUp (View v) {
         if (validateInput()) {
-
-
-
-
             // Input is valid, here send data to your server
-
             String firstName = etFirstName.getText().toString();
             String lastName = etLastName.getText().toString();
             String username = etUserName.getText().toString();
